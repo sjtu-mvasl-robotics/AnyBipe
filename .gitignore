@@ -17,7 +17,6 @@ __pycache__/
 *.egg-info/
 dist/
 build/
-*.so
 
 # ROS
 devel/
