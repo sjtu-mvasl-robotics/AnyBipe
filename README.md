@@ -87,6 +87,11 @@ pip install -e .
     catkin_make install
     source install/setup.bash
 ```
+If your `catkin_make` failed in this step, it means your current `ROS` environment might be missing some dependencies. You can install the missing dependencies by running the following command，and then run `catkin_make` again:
+
+```bash
+    rosdep install --from-paths src --ignore-src -r -y
+```
 
 ### Step 7: Compile necessary code
 ```bash
