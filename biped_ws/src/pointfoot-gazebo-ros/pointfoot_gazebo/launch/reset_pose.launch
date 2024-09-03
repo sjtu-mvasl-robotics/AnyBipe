@@ -1,0 +1,18 @@
+<launch>
+    <node pkg="rosservice" type="rosservice" name="reset_configuration" args="call /gazebo/set_model_configuration 
+        '{model_name: point_foot_robot, joint_names:[
+        'abad_L_joint','hip_L_joint','knee_L_joint',
+        'abad_R_joint','hip_R_joint','knee_R_joint'],
+        joint_positions: [
+        0.0, 0.0, 0.0,
+        0.0, 0.0, 0.0]}'" />
+
+    <node pkg="rosservice" type="rosservice" name="reset_pose" args="call /gazebo/set_model_state 
+    '{model_state: { model_name: point_foot_robot, pose: {
+        position: { x: 0., y: 0, z: 0.62 },
+        orientation: { w: 1, x: 0, y: 0, z: 0  } }, 
+        twist: { 
+            linear: {x: 0 , y: 0 ,z: 0 } , 
+            angular: { x: 0 , y: 0 , z: 0 } } , 
+        reference_frame: world } }'" />
+</launch>

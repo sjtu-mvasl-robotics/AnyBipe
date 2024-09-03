@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package format="2">
+    <name>pointfoot_gazebo</name>
+    <version>0.0.0</version>
+    <description>The pointfoot_gazebo packages.</description>
+    <maintainer email="limx@limxdynamics.com">limxdynamics</maintainer>
+    <author email="limx@limxdynamics.com">limxdynamics</author>
+    <license>TODO</license>
+    <buildtool_depend>catkin</buildtool_depend>
+    <depend>roscpp</depend>
+    <depend>gazebo_dev</depend>
+    <depend>gazebo_ros_control</depend>
+    <depend>hardware_interface</depend>
+    <depend>realtime_tools</depend>
+    <depend>pointfoot_sdk_sim</depend>
+    <export>
+        <gazebo_ros_control plugin="${prefix}/pointfoot_hw_sim_plugins.xml"/>
+        <gazebo_ros gazebo_model_path="${prefix}/.."/>
+    </export>
+</package>

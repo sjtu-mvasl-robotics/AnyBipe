@@ -1,0 +1,35 @@
+task: Pointfoot Rough
+env_name: pointfoot_rough
+
+description: To make the pointfoot robot (bipedal robots) track the linear and angular velocity provided by commands. The policy will be trained in simulation and deployed in the real world, so the policy should be as steady and stable as possible with minimal action rate. Specifically, as it's running, the orientation should be perpendicular to gravity. Also, the legs should move smoothly and avoid the DOF limits. While running, the robot should keep the base height at 0.65 in flat terrain, and ensure both leg movements are balanced. The robot should survive as long as possible and try to climb up tough terrains like stairs. The robot must avoid collision of its own joints, for that bipedal robot cannot recover from falling. During your reward design, remember to regulate joint velocities and torques to avoid damage to the robot. Keep the robot balanced is the key to success. Good luck!
+# Note: 0.65 is from pointfoot_rough_config.py (base_height_target)
+
+
+train_script: legged_gym/scripts/train.py
+reward_template: legged_gym/envs/pointfoot/rewards/anybipe_rewards_template.py
+reward_dest: legged_gym/envs/pointfoot/rewards/anybipe_rewards.py
+
+train_iterations: 50
+success_keyword: running
+failure_keyword: Traceback
+
+# The following parameters are used to configure task-specific prompts
+prompts:
+  additional:
+    coding_references: True
+    coding_tips: True
+    coding_restrictions: False
+    safety_restrictions: False
+    policy_feedback: False
+    ros_feedback: False
+    real_feedback: False
+
+
+# The following parameters are used to configure the observation space
+custom_obs: terrain_level, survival
+custom_obs_weights: 1.4, 10.0
+success_weight: 0.3
+correlation_weight: 0.0
+
+# The following parameters sets eval parameters
+tracking_duration: 30

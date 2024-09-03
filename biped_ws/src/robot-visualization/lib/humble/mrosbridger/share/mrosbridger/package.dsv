@@ -1,0 +1,14 @@
+source;share/mrosbridger/hook/cmake_prefix_path.ps1
+source;share/mrosbridger/hook/cmake_prefix_path.dsv
+source;share/mrosbridger/hook/cmake_prefix_path.sh
+source;share/mrosbridger/hook/path.ps1
+source;share/mrosbridger/hook/path.dsv
+source;share/mrosbridger/hook/path.sh
+source;share/mrosbridger/hook/pythonscriptspath.ps1
+source;share/mrosbridger/hook/pythonscriptspath.dsv
+source;share/mrosbridger/hook/pythonscriptspath.sh
+source;share/mrosbridger/local_setup.bash
+source;share/mrosbridger/local_setup.dsv
+source;share/mrosbridger/local_setup.ps1
+source;share/mrosbridger/local_setup.sh
+source;share/mrosbridger/local_setup.zsh

@@ -1,0 +1,27 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from controller_msgs/msg/IMUData.msg
+// generated code does not contain a copyright notice
+
+#include "std_msgs/msg/Header.idl"
+
+module controller_msgs {
+  module msg {
+    typedef double double__3[3];
+    typedef double double__4[4];
+    struct IMUData {
+      std_msgs::msg::Header header;
+
+      uint64 imustamp;
+
+      uint32 status;
+
+      double__3 euler;
+
+      double__4 quat;
+
+      double__3 acc;
+
+      double__3 gyro;
+    };
+  };
+};

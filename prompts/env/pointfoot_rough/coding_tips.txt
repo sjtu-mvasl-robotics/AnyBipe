@@ -1,0 +1,3 @@
+    (8) While designing reward for pointfoot robots, remember to keep max feet height (you can access through self.env.last_max_feet_height) balanced (penalize if the variance of that variable is too high)
+    (9) You can access the height of the robot by using `self._get_base_height`.
+    (10) While judging DOF behavior, you can access DOF limits (lower and upper bound) through `self.env.dof_pos_limits[:,0]` and `self.env.dof_pos_limits[:,1]`. 

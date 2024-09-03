@@ -1,0 +1,4 @@
+Important restrictions for writing the reward function code:
+    (1) Most importantly, the reward code's must only use attributes of the provided environment object (namely, variables that have prefix env.). Under no circumstance can you introduce new input variables.
+    (2) Make sure any new tensor or variable you introduce is on the same device as the environment tensors.
+    (3) Reward functions with `_gt_` inside are used for monitoring custom reward function behavior. Under no circumstance can you include `_gt_` in your reward function name.

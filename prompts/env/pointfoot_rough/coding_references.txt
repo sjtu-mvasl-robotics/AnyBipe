@@ -1,0 +1,52 @@
+Here are some templates for writing your own reward function. 
+
+# tracking linear velocity
+def _reward_tracking_lin_vel(self):
+    # Tracking of linear velocity commands (xy axes)
+    lin_vel_error = torch.sum(torch.square(self.env.commands[:, :2] - self.env.base_lin_vel[:, :2]), dim=1)
+    return torch.exp(-lin_vel_error / self.env.cfg.rewards.tracking_sigma)
+
+# tracking angular velocity
+def _reward_tracking_ang_vel(self):
+    # Tracking of angular velocity commands (yaw)
+    ang_vel_error = torch.square(self.env.commands[:, 2] - self.env.base_ang_vel[:, 2])
+    return torch.exp(-ang_vel_error / self.env.cfg.rewards.tracking_sigma)
+
+# reward dof accelerations
+def _reward_dof_acc(self):
+    # Penalize dof accelerations
+    return torch.sum(torch.square((self.env.last_dof_vel - self.env.dof_vel) / self.env.dt), dim=1) * {reward_term_scale}
+
+# reward for action rates 
+def _reward_action_rate(self):
+    # Penalize changes in actions
+    return torch.sum(torch.square(self.env.last_actions - self.env.actions), dim=1) * {reward_term_scale}
+
+# reward for avoiding collisions
+def _reward_collision(self):
+    # Penalize collisions on selected bodies
+    return torch.sum(1. * (torch.norm(self.env.contact_forces[:, self.env.penalised_contact_indices, :], dim=-1) > 0.1),
+                        dim=1) * {reward_term_scale}
+
+# reward for setting limits (note that torque, pose, and velocity should all be considered)
+def _reward_torque_limits(self):
+    # penalize torques too close to the limit
+    return torch.sum(
+        (torch.abs(self.env.torques) - self.env.torque_limits * self.env.cfg.rewards.soft_torque_limit).clip(min=0.), dim=1) * {reward_term_scale}
+
+
+# penalize high feet contact forces to maintain smooth actions
+def _reward_feet_contact_forces(self):
+    # penalize high contact forces
+    return torch.sum((torch.norm(self.env.contact_forces[:, self.env.feet_indices, :],
+                        dim=-1) - self.env.cfg.rewards.max_contact_force).clip(min=0.), dim=1) * {reward_term_scale}
+
+# penalize unbalanced actions
+def _reward_unbalance_feet_air_time(self):
+    return torch.var(self.env.last_feet_air_time, dim=-1) * {reward_term_scale}
+
+def _reward_unbalance_feet_height(self):
+    return torch.var(self.env.last_max_feet_height, dim=-1) * {reward_term_scale}
+
+
+You can refer to these templates, but instead of using them directly, you should design reward functions on your own, and realize as much criterion that you can think of as possible. Different rewards may require different reward term scales, assign higher absolute scale to the ones you think are the more important and consider how it would affect the training process.

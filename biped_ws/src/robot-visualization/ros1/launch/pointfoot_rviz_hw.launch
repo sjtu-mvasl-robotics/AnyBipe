@@ -1,0 +1,10 @@
+﻿<launch>
+  <param name="robot_description" command="cat $(find robot_description)/pointfoot/urdf/robot.urdf"/>
+  <arg name="rvizconfig" default="$(find robot_visualization)/rviz/pointfoot.rviz" />
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(arg rvizconfig)" />
+  <node pkg="robot_visualization" type="mrosbridger" name="robot_bridger_rviz_hw">
+    <env name="MROS_AGENT_IP" value="10.192.1.2"/>
+    <param name="bridge_mros2ros" value="1" />
+    <param name="mros2ros_include" value="/tf;/tf_static;/odom;/VisualizeStatePointFoot" />
+  </node>
+</launch>

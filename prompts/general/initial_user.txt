@@ -1,0 +1,3 @@
+Initial Issacgym environment is configured as follows:
+{obs_file_str}
+Write a reward function for the following task: {description}.

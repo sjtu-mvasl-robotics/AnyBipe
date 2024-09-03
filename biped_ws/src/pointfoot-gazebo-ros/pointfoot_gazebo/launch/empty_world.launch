@@ -1,0 +1,18 @@
+<launch>
+    <rosparam file="$(find pointfoot_gazebo)/config/default_point_foot.yaml" command="load"/>
+
+    <param name="robot_description" command="cat $(find robot_description)/pointfoot/urdf/robot.urdf"/>
+
+    <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="world_name" value="$(find pointfoot_gazebo)/worlds/empty_world.world"/>
+        <arg name="paused" value="false"/>
+    </include>
+
+    <!-- push robot_description to factory and spawn robot in gazebo -->
+    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" clear_params="true"
+          args="-param robot_description
+          -urdf
+          -z 0.62
+          -model point_foot_robot" output="screen"/>
+</launch>

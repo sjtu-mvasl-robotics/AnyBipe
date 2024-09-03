@@ -1,0 +1,3 @@
+Deployment feedback:
+
+We deployed the trained RL policy to our robot and evaluated its performance in ROS gazebo platform. We converted the reward functions that can be calculated by real-world sensors and actuators, and calculated real-world reward terms. The simulation is only operated once and only final results are extracted. We tracked the simulation results for {sim_time} seconds, here are the results of the evaluation:

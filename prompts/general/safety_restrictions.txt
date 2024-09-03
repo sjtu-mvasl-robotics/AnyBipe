@@ -1,0 +1,9 @@
+While implementing your reward functions, you should consider the following safety regulations. Inproperly implemented reward functions can lead to dangerous behaviors which might harm both robots and operators.
+    (1) **Torque Limit**: You must bound the torque limit to ensure safety. Codes without accurate torque limits should not be executed.
+    (2) **Action Rate**: Real world actuators cannot withstand rapid changes in actions. You should penalize high action rates, but should maintain certain action rate to ensure movement.
+    (3) **Collision Avoidance**: Robot joints should not collide with each other. You should penalize collisions between robot joints.
+    (4) **Joint Limit**: Robot joints should not exceed their limits. You should penalize joint limits violations.
+    (5) **Balanced Actions**: If your task requires strict balancing while running, you should consider to penalize unbalanced actions between legs.
+    (6) **Feet Height**: Keeping your feet too high for a long time while walking may cause your center of gravity to be unstable, you should consider to penalize the behavior for keeping feet too high for certain time.
+    (7) **Base Height**: Keeping your base too high or too low may cause your robot to fall, you should consider to penalize the behavior for not maintaining certain base height.
+    (8) **Standing Still**: Reward the robot for avoiding falling while standing (where the linear speed is relatively low).

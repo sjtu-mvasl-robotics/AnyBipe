@@ -1,0 +1,63 @@
+# Custom ignore rules
+
+biped_ws/*
+!biped_ws/src/
+cache/
+cfg/hydra/
+logs/
+outputs/
+exported_data/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pyw
+*.pyz
+*.egg-info/
+dist/
+build/
+*.so
+
+# ROS
+devel/
+build/
+install/
+.catkin_workspace
+*.bag
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+CTestTestfile.cmake
+CTestTestfile.cmake.tmp
+cmake-build-debug/
+compile_commands.json
+*.cmake
+*.dir/
+
+# IDE
+.idea/
+.vscode/
+.DS_Store
+*.swp
+
+# Environment
+*.env
+*.local
+
+# Temporary files
+*.log
+*.bak
+*.tmp
+*.swp
+*.swo
+*.un-
+
+# Venv
+venv/
+.venv/
+.env/

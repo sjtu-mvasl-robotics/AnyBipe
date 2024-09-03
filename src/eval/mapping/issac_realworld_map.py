@@ -1,0 +1,15 @@
+func_map = {
+    "base_lin_vel": "base_lin_vel",
+    "base_ang_vel": "base_ang_vel",
+    "torques": "torques[idx:idx+1]",
+    "dof_vel": "dq[idx:idx+1]",
+    "last_dof_vel": "last_dq[idx:idx+1]",
+    "dof_acc": "ddq",
+    "actions": "q[idx:idx+1]",
+    "dt": "dt[idx:idx+1]",
+    "last_actions": "last_q[idx:idx+1]",
+    "survival_time": "survival_time",
+    "commands": "commands",
+    "torque_limits": "torque_limits",
+    "feet_state": "feet_state",
+}

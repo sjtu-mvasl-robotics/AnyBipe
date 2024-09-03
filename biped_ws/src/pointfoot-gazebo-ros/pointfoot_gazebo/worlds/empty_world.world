@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+
+<sdf version="1.5">
+    <world name="default">
+        <physics type="ode">
+            <type>world</type>
+            <max_step_size>0.002</max_step_size>
+            <real_time_update_rate>500</real_time_update_rate>
+            <iters>500</iters>
+        </physics>
+        <include>
+            <uri>model://sun</uri>
+        </include>
+        <include>
+            <uri>model://ground_plane</uri>
+        </include>
+    </world>
+</sdf>

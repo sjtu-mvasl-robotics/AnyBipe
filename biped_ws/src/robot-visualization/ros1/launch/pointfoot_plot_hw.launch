@@ -1,0 +1,9 @@
+﻿<launch>
+  <arg name="plotlayout" default="$(find robot_visualization)/layout/pointfoot.xml" />
+  <node pkg="plotjuggler" type="plotjuggler" name="robot_plotjuggler" args="-l $(arg plotlayout) -n" />
+  <node pkg="robot_visualization" type="mrosbridger" name="robot_bridger_plot_hw">
+    <env name="MROS_AGENT_IP" value="10.192.1.2"/>
+    <param name="bridge_mros2ros" value="1" />
+    <param name="mros2ros_include" value="/ImuData;/RobotCmdPointFoot;/RobotStatePointFoot;" />
+  </node>
+</launch>

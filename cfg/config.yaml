@@ -1,0 +1,52 @@
+defaults:
+  - _self_
+  - env: pointfoot_rough
+  - override hydra/launcher: local
+  - override hydra/output: local
+
+hydra:
+  job:
+    chdir: True
+
+api:
+  api_key: "sk-xxx"
+  api_base: "https://api.openai.com/v1"
+
+
+# workspace parameters
+workspace_dir: pointfoot-legged-gym/
+
+# LLM parameters
+model: gpt-4o
+temperature: 0.8
+
+# GT parameters
+gt:
+  use_gt: True
+  set_gt: False
+  gt_dir: 
+# Eureka parameters
+iteration: 5               # how many iterations of Eureka to run
+sample: 4                  # number of Eureka samples to generate per iteration
+
+# Environment parameters
+cuda:
+  multi_gpu: True
+  visible_devices: 0,3   # which GPUs to use
+  deterministic: False     # whether to set random seeds for reproducibility
+  seed: 0                  # random seed
+
+deploy_dir: biped_ws/src/rl-deploy-ros-cpp/robot_controllers/config/pointfoot/policy
+deploy_gazebo_map: src/eval/mapping/issac_gazebo_map.py
+deploy_realworld_map: src/eval/mapping/issac_realworld_map.py
+test_realworld: False
+
+# Evaluation parameters
+eval:
+  eval_time: 30            # how long to evaluate the policy in simulation & real world (in seconds)
+
+
+# Weights and Biases
+use_wandb: False            # whether to use wandb for logging
+wandb_username: ""          # wandb username if logging with wandb
+wandb_project: ""           # wandb project if logging with wandb
