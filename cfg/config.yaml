@@ -27,7 +27,7 @@ gt:
   gt_dir: 
 # Eureka parameters
 iteration: 5               # how many iterations of Eureka to run
-sample: 4                  # number of Eureka samples to generate per iteration
+sample: 16                  # number of Eureka samples to generate per iteration
 
 # Environment parameters
 cuda:

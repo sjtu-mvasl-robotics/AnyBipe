@@ -9,7 +9,7 @@ train_script: legged_gym/scripts/train.py
 reward_template: legged_gym/envs/pointfoot/rewards/anybipe_rewards_template.py
 reward_dest: legged_gym/envs/pointfoot/rewards/anybipe_rewards.py
 
-train_iterations: 50
+train_iterations: 5000
 success_keyword: running
 failure_keyword: Traceback
 

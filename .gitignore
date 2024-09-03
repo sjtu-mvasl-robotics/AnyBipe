@@ -3,7 +3,6 @@
 biped_ws/*
 !biped_ws/src/
 cache/
-cfg/hydra/
 logs/
 outputs/
 exported_data/
