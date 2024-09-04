@@ -77,9 +77,9 @@ pip install -e .
 ### Step 5: Install Run-time Dependencies
 ```bash
     cd gyms/
-    cd pointfoot-legged-gym/
+    cd rsl_rl/
     pip install -e .
-    cd ../rsl_rl/
+    cd ../pointfoot-legged-gym/
     pip install -e .
 ```
 
