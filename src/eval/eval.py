@@ -500,7 +500,7 @@ class SimEnvRobotTracker:
         ax[2].plot(self.rs_t, int_esti_z, label='estimated')
         ax[2].set_title("Z Position")
         ax[2].legend()
-        plt.savefig(self.export_path + "gt_imu_pos.png")
+        plt.savefig(os.path.join(self.export_path, "gt_imu_pos.png"))
 
     def plot_velocity(self):
         # plot gt and imu velocity
@@ -528,7 +528,7 @@ class SimEnvRobotTracker:
             ax[2].axvline(x=self.gt_t[falling_time_idx], color='r', linestyle='--', label='falling time')
 
         ax[2].legend()
-        plt.savefig(self.export_path + "gt_imu_vel.png")
+        plt.savefig(os.path.join(self.export_path, "gt_imu_vel.png"))
 
         
 
@@ -548,7 +548,7 @@ class SimEnvRobotTracker:
         ax[2].set_title("Z Acceleration")
         ax[2].legend()
 
-        plt.savefig(self.export_path + "gt_imu_acc.png")
+        plt.savefig(os.path.join(self.export_path, "gt_imu_acc.png"))
         
 
 
@@ -574,7 +574,7 @@ class SimEnvRobotTracker:
         ax[2].set_title("Z Angular Velocity")
         ax[2].legend()
 
-        plt.savefig(self.export_path + "gt_imu_ang_vel.png")
+        plt.savefig(os.path.join(self.export_path , "gt_imu_ang_vel.png"))
         
 
 
@@ -594,7 +594,7 @@ class SimEnvRobotTracker:
         ax[2].set_title("Yaw")
         ax[2].legend()
 
-        plt.savefig(self.export_path + "gt_imu_ang.png")
+        plt.savefig(os.path.join(self.export_path, "gt_imu_ang.png"))
 
     def plot_state_vel(self):
         # plot left and right leg velocity, with imu velocity as ground truth
@@ -620,7 +620,7 @@ class SimEnvRobotTracker:
         ax[2].set_title("Z Velocity")
         ax[2].legend()
 
-        plt.savefig(self.export_path + "state_vel.png")
+        plt.savefig(os.path.join(self.export_path, "state_vel.png"))
 
     def plot_state_angl(self):
         # plot left and right q and int of dq
@@ -660,7 +660,7 @@ class SimEnvRobotTracker:
         ax[5].set_title("Right Ankle")
         ax[5].legend()
 
-        plt.savefig(self.export_path + "state_angl.png")
+        plt.savefig(os.path.join(self.export_path ,"state_angl.png"))
 
     def plot_state_dq(self):
         fig, ax = plt.subplots(6, 1, figsize=(12, 12))
@@ -688,7 +688,7 @@ class SimEnvRobotTracker:
         ax[5].set_title("Right Ankle")
         ax[5].legend()
 
-        plt.savefig(self.export_path + "state_dq.png")
+        plt.savefig(os.path.join(self.export_path, "state_dq.png"))
 
     def plot_feet_state(self):
         fig, ax = plt.subplots(3, 1, figsize=(12, 12))
@@ -707,14 +707,14 @@ class SimEnvRobotTracker:
         ax[2].set_title("Z Feet State")
         ax[2].legend()
 
-        plt.savefig(self.export_path + "feet_state.png")
+        plt.savefig(os.path.join(self.export_path, "feet_state.png"))
 
 
     
     
     def export_data(self):
         # export data as npz
-        export_path = self.export_path + "exported_data.npz"
+        export_path = os.path.join(self.export_path, "exported_data.npz")
         t = np.array(self.imu_t)
         base_lin_vel = np.array(self.imu_vel).swapaxes(-1, -2)
         base_ang_vel = np.array(self.imu_ang_vel).swapaxes(-1, -2)
