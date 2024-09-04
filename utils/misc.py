@@ -9,6 +9,26 @@ import sys
 
 from utils.extract_task_code import file_to_string
 
+def check_and_start_roscore():
+    try:
+        result = subprocess.check_output(["ps", "aux"], universal_newlines=True)
+        if "roscore" in result:
+            print("roscore is already running.")
+            return None
+        else:
+            print("roscore is not running. Starting roscore...")
+            roscore_process = subprocess.Popen(["roscore"], preexec_fn=os.setsid)
+            return roscore_process
+
+    except subprocess.CalledProcessError as e:
+        print(f"An error occurred: {e}")
+        return None
+
+def stop_roscore(roscore_process):
+    if roscore_process:
+        print("Stopping roscore...")
+        os.killpg(os.getpgid(roscore_process.pid), signal.SIGTERM) 
+
 def set_freest_gpu():
     freest_gpu = get_freest_gpu()
     os.environ['CUDA_VISIBLE_DEVICES'] = str(freest_gpu)

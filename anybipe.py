@@ -24,6 +24,9 @@ ROOT_DIR = os.getcwd()
 @hydra.main(config_path='cfg', config_name='config', version_base='1.1')
 def main(cfg):
 
+    # start roscore
+    roscore_process = check_and_start_roscore()
+
     # Initialize gpu configs
     multi_gpu = cfg.cuda.multi_gpu
     if multi_gpu:
@@ -660,6 +663,10 @@ def main(cfg):
     # remove cache directory
     shutil.rmtree(cache_dir)
     logging.info("Cache directory removed!")
+
+    # This function only stop roscore when it is launched by this programme
+    stop_roscore(roscore_process)
+
 
 if __name__ == '__main__':
     main()
