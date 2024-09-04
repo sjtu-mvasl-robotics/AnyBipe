@@ -95,6 +95,15 @@ If your `catkin_make` failed in this step, it means your current `ROS` environme
     rosdep install --from-paths src --ignore-src -r -y
 ```
 
+If your `catkin_make` reports missing `onnxruntime_cxx_api.h`, it means that you haven't successfully configured your ubuntu directory for `onnxruntime` support. Consider using the following commands to include neccessary libraries (check the github page for latest release and replace the downloading link with the one that fits your system architecture):
+```bash
+    wget -O onnxruntime.tar.gz https://github.com/microsoft/onnxruntime/releases/{your_desired_release_version} 
+    tar -zxvf onnxruntime.tar.gz
+    sudo cp -a onnxruntime/include/* /usr/include
+    sudo cp -a onnxruntime/lib/* /usr/lib
+
+```
+
 ### Step 7: Compile necessary code
 ```bash
     cd src/eval
@@ -123,6 +132,8 @@ The whole project uses locomotion of a bipedal robot provided by `limx` as an ex
 9. Copy a version of your issacgym initialization file to `envs/` directory.
 
 10. Copy a version of your robot configuration file to `src/eval/` directory to replace `RewardCfg.py`.
+
+11. Check and set correct path for your robot sdk in `src/eval/eval*.py` files.
 
 When you finished the configuration part, you can start training and deploying your robot by running the following command:
 
