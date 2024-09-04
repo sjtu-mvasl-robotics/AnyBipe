@@ -97,8 +97,8 @@ If your `catkin_make` failed in this step, it means your current `ROS` environme
 
 If your `catkin_make` reports missing `onnxruntime_cxx_api.h`, it means that you haven't successfully configured your ubuntu directory for `onnxruntime` support. Consider using the following commands to include neccessary libraries (check the github page for latest release and replace the downloading link with the one that fits your system architecture):
 ```bash
-    wget -O onnxruntime.tar.gz https://github.com/microsoft/onnxruntime/releases/{your_desired_release_version} 
-    tar -zxvf onnxruntime.tar.gz
+    wget -O onnxruntime.tgz https://github.com/microsoft/onnxruntime/releases/{your_desired_release_version} # or .tar.gz, .zip
+    tar -xzvf onnxruntime.tgz # or .tar.gz, .zip (use unzip for .zip)
     sudo cp -a onnxruntime/include/* /usr/include
     sudo cp -a onnxruntime/lib/* /usr/lib
 
