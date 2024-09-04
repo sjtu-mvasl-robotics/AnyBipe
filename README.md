@@ -43,6 +43,8 @@ To configure and run this project for your own robot, you have to make sure that
 
 This repository contains code for training and deploying bipedal robots using `anybipe.py`. The code contains function to generate reward functions using GPT, train the robot using Issacgym environments, deploy the training model via ROS, convert generated reward functions to real-world measurable metrics, automatically collect feedback from both Gazebo simulation and real-world experiments, and more. The robot model and sdk are provided by [limx dynamics](https://www.limxdynamics.com/en) and adjusted for our work. Training dependencies `legged_gym` and `rsl_rl` are also modified to fit our work.
 
+Our work contains a few large resource files, it is recommended to install [git lfs](https://docs.github.com/en/repositories/working-with-files/managing-large-files/installing-git-large-file-storage) before cloning.
+
 Since our environment requires `ROS` platform, we recommend using `Ubuntu 20.04` for the best experience. You can also use `Docker` for running the simulation environment. The following steps will guide you to install the required dependencies:
 
 ### Step 1: Install ROS Noetic
@@ -77,7 +79,7 @@ pip install -e .
     cd gyms/
     cd pointfoot-legged-gym/
     pip install -e .
-    cd ../rs_rl/
+    cd ../rsl_rl/
     pip install -e .
 ```
 
