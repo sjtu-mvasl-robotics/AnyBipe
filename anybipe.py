@@ -477,7 +477,7 @@ def main(cfg):
                 deployment_survival_times.append(DUMMY_FAILURE)
 
             else:
-                deployment_feedbacks.append(f'Function convertion failed for the following functions:\n{conv_failed}\n Running evaluation for iteration {iter} response {idx}:\n {deploy_str}')
+                # deployment_feedbacks.append(f'Function convertion failed for the following functions:\n{conv_failed}\n Running evaluation for iteration {iter} response {idx}:\n {deploy_str}')
                 lines = deploy_str.split("\n")
                 for line in lines:
                     if "total_reward" in line:
@@ -561,7 +561,7 @@ def main(cfg):
                     realworld_survival_times.append(DUMMY_FAILURE)
 
                 else:
-                    realworld_feedbacks.append(f'Function convertion failed for the following functions:\n{conv_failed}\n Running evaluation for iteration {iter} response {idx}:\n {real_str}')
+                    # realworld_feedbacks.append(f'Function convertion failed for the following functions:\n{conv_failed}\n Running evaluation for iteration {iter} response {idx}:\n {real_str}')
                     lines = real_str.split("\n")
                     for line in lines:
                         if "total_reward" in line:
