@@ -21,7 +21,7 @@ ______________________________________________________________________
 
 </div>
 
-Reserved for abstract.
+Training and deploying reinforcement learning (RL) policies for robots, especially in accomplishing specific tasks, presents substantial challenges. Recent advancements have explored diverse reward function designs, training techniques, simulation-to-reality (sim-to-real) transfers, and performance analysis methodologies, yet these still require significant human intervention. This paper introduces an end-to-end framework for training and deploying RL policies, guided by Large Language Models (LLMs), and evaluates its effectiveness on bipedal robots. The framework consists of three interconnected modules: an LLM-guided reward function design module, an RL training module leveraging prior work, and a sim-to-real homomorphic evaluation module. This design significantly reduces the need for human input by utilizing only essential simulation and deployment platforms, with the option to incorporate human-engineered strategies and historical data. We detail the construction of these modules, their advantages over traditional approaches, and demonstrate the framework's capability to autonomously develop and refine controlling strategies for bipedal robot locomotion, showcasing its potential to operate independently of human intervention.
 
 ## Important Notice
 The `AnyBot Integrated` project is still under development, and this project is the prime version for a more completed framework. Our general framework is almost ready, but we are still working on coding migration (from `Issacgym` to `Issac Sim`), documentation, further experiments, and more. This repository might be merged to the main framework repository in the future.
@@ -52,7 +52,7 @@ Since our environment requires `ROS` platform, we recommend using `Ubuntu 20.04`
 You can install ROS Noetic by following the instructions [here](http://wiki.ros.org/noetic/Installation/Ubuntu). We recommend installing the `Desktop-Full` version. Or you can use the following command to create a docker container with ROS Noetic:
 
 ```bash
-docker run -it --rm --name ros-noetic -v $(pwd):/workspace -w /workspace osrf/ros:noetic-desktop-full
+docker run --gpus all -it --device=/dev/dri  --group-add video --volume=/tmp/.X11-unix:/tmp/.X11-unix  --env="DISPLAY=$DISPLAY" --env="QT_X11_NO_MITSHM=1" --env="NVIDIA_DRIVER_CAPABILITIES=all" --network=host --rm --name ros-noetic -v $(pwd):/workspace -w /workspace  osrf/ros:noetic-desktop-full
 ```
 
 ### Step 2: Create a Conda Environment (Optional)

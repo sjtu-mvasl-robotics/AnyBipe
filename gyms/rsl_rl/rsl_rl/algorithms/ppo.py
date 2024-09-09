@@ -205,9 +205,9 @@ class PPO:
                 # Distillation loss
                 if self.use_teacher_model:
                     desired_actions = self.teacher(obs_batch).detach()
-                    distillation_loss = self.teacher_coef * F.cross_entropy(actions_batch, desired_actions)
+                    distillation_loss = ((torch.square(mu_batch - desired_actions) / (2.0 * torch.square(sigma_batch))) - 0.5, axis=-1).mean()
+                    distillation_loss *= self.teacher_coef
                     loss += distillation_loss
-
                 # Gradient step
                 self.optimizer.zero_grad()
                 loss.backward()
