@@ -63,10 +63,12 @@ conda activate anybipe
 
 ### Step 3: Install Issacgym
 Download and install Issacgym from [here](https://developer.nvidia.com/isaac-gym) and unzip the file, then run the following commands:
+Note that `np.float` was a deprecated alias for the builtin `float`, so you neeed to manually replace it with float. Doing this will not modify any behavior and is safe.
 
 ```bash
 cd isaacgym/python
 pip install -e .
+sed -i 's/np.float/float/' isaacgym/torch_utils.py
 ```
 
 ### Step 4: Install AnyBipe to your workspace
