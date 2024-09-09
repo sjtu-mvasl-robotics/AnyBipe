@@ -54,6 +54,7 @@ compile_commands.json
 *.swp
 *.swo
 *.un-
+*.Identifier
 
 # Venv
 venv/
