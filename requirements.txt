@@ -11,3 +11,4 @@ PyYAML==6.0.2
 openai==0.28.0
 pillow==10.4.0
 Hydra==2.5
+tensorboard==2.14.0
