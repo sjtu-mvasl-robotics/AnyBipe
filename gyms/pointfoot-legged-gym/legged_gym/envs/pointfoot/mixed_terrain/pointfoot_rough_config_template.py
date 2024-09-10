@@ -231,6 +231,7 @@ class PointFootRoughCfg(BaseConfig):
     class rewards_anybipe:
         reward_type = 'anybipe'  # original, anybipe
         tracking_sigma = 0.25          # Can be used for command curriculum, if enabled
+        orientation_sigma = 0.25       # Can be used for command curriculum, if enabled
         tracking_sigma_yaw = 0.25      # Can be used for command curriculum, if enabled
         base_height_target = 0.62
         soft_dof_pos_limit = 0.95  # percentage of urdf limits, values above this limit are penalized
