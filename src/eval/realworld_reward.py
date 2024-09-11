@@ -103,7 +103,7 @@ class RealworldReward:
                         pass
 
             for key, value in results.items():
-                results[key] = value / total_timesteps
+                results[key] = value / total_timesteps * self.env.t[-1].numpy().item()
             
             results["total_reward"] = np.sum(list(results.values()))
             results["total_survival_time"] = self.env.survival_time.numpy().item()
