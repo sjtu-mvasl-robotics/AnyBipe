@@ -12,4 +12,6 @@ func_map = {
     "commands": "commands",
     "torque_limits": "torque_limits",
     "feet_state": "feet_state",
+    "feet_height": "feet_height",
+    "last_feet_height": "last_feet_height",
 }
