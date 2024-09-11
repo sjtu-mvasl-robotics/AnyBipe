@@ -178,7 +178,7 @@ AnyBipe integrates all components into a single file `anybipe.py` for users to e
 
 4. **Converting Reward Functions to Real-world Metrics**: The code converts the generated reward functions to real-world measurable metrics. The conversion process is done using the mapping table in the `src/eval/mapping` directory. The conversion script can also be found in `utils/misc.py`.
 
-5. **Running and Simple Pose Tracking in Gazebo and Real-world**: The code runs the robot in Gazebo simulation and real-world experiments. The tracking process is done using the tracking script in the `src/eval/eval.py` and `src/eval/eval_real.py` files.
+5. **Running and Simple Pose Tracking in Gazebo and Real-world**: The code runs the robot in Gazebo simulation and real-world experiments. The tracking process is done using the tracking script in the `src/eval/eval.py` and `src/eval/eval_real.py` files. Safety check function is provided in `src/eval/SA.py`.
 
 6. **Collecting Feedback**: The code automatically collects feedback from both Gazebo simulation and real-world experiments. The feedback collection process is done using the feedback script in the `src/eval/realworld_reward.py` file.
 
