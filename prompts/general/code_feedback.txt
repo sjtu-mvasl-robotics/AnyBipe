@@ -5,5 +5,4 @@ Please carefully analyze the feedbacks and provide a new, improved reward functi
         (b) Re-writing the reward component 
         (c) Discarding the reward component
     (3) If some reward components' magnitude is significantly larger, then you must re-scale its value to a proper range
-    (4) The terrain_level term provides a critical measurement beyond rewards, if your reward is high but terrain_level maintains low scale (less than 2), then the policy may not handle sim2real task well. You should consider re-designing and balancing your reward terms.
-Please analyze each existing reward component in the suggested manner above first, and then write the reward function code. 
+    (4) If 

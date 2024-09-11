@@ -384,6 +384,7 @@ def main(cfg):
                         if "rew_success" not in run_log:
                             content += f"ground-truth score: {metric_cur}, Max: {metric_cur_max:.2f}, Mean: {metric_cur_mean:.2f}, Min: {metric_cur_min:.2f} \n"             
                 code_feedbacks.append(code_feedback)
+                content += "{policy_feedback}\n"
                 content += code_feedback
 
             else:
@@ -399,6 +400,7 @@ def main(cfg):
                 content = execution_error_feedback.format(traceback_msg=traceback_msg)
 
             content += coding_tips
+            content += "\n"
             content += coding_restrictions
             contents.append(content)
 
@@ -435,6 +437,7 @@ def main(cfg):
 
         # Evaluate the top code samples in simulation
         deployment_feedbacks = []
+        deployment_strs = []
         deployment_original_feedbacks = []
         deployment_rewards = []
         deployment_survival_times = []
@@ -471,13 +474,15 @@ def main(cfg):
                 process.wait()
 
             deploy_str = file_to_string(deploy_eval_filepath)
+            deployment_strs.append(deploy_str)
+
             if "total_reward" not in deploy_str:
                 deployment_feedbacks.append(f'Evaluation failed for iteration {iter} response {idx}, no feedback available!')
                 deployment_rewards.append(DUMMY_FAILURE)
                 deployment_survival_times.append(DUMMY_FAILURE)
 
             else:
-                # deployment_feedbacks.append(f'Function convertion failed for the following functions:\n{conv_failed}\n Running evaluation for iteration {iter} response {idx}:\n {deploy_str}')
+                deployment_feedbacks.append(f'Function convertion failed for the following functions:\n{conv_failed}\n Running evaluation for iteration {iter} response {idx}:\n {deploy_str}')
                 lines = deploy_str.split("\n")
                 for line in lines:
                     if "total_reward" in line:
@@ -513,12 +518,13 @@ def main(cfg):
         realworld_survival_times = []
 
         if cfg.test_realworld:
+            sa_func = import_module_from_file(script_path=os.path.join(ROOT_DIR, 'src', 'eval', 'SA.py'), function_name="sa_func")
             for i, idx in enumerate(top_idx):
-                # Safety check: if deployment survival time is less than 0.9 * tracking_duration, skip real-world evaluation
-                if deployment_survival_times[idx] < 0.9 * cfg.env.tracking_duration:
-                    logging.info(f"Iteration {iter}: Deployment survival time is less than 90% of tracking duration, skipping real-world evaluation!")
-                    realworld_feedbacks.append(f'Deployment survival time is less than 90% of tracking duration, skipping real-world evaluation!')
-                    realworld_original_feedbacks.append(f'Deployment survival time is less than 90% of tracking duration, skipping real-world evaluation!')
+                # Safety check
+                if not sa_func(deployment_strs[i]):
+                    logging.info(f"Iteration {iter}: Safety check not passed, skipping real-world evaluation!")
+                    realworld_feedbacks.append(f'Safety check not passed, skipping real-world evaluation!')
+                    realworld_original_feedbacks.append(f'Safety check not passed, skipping real-world evaluation!')
                     realworld_rewards.append(DUMMY_FAILURE)
                     realworld_survival_times.append(DUMMY_FAILURE)
                     continue
@@ -561,7 +567,7 @@ def main(cfg):
                     realworld_survival_times.append(DUMMY_FAILURE)
 
                 else:
-                    # realworld_feedbacks.append(f'Function convertion failed for the following functions:\n{conv_failed}\n Running evaluation for iteration {iter} response {idx}:\n {real_str}')
+                    realworld_feedbacks.append(f'Function convertion failed for the following functions:\n{conv_failed}\n Running evaluation for iteration {iter} response {idx}:\n {real_str}')
                     lines = real_str.split("\n")
                     for line in lines:
                         if "total_reward" in line:
@@ -584,10 +590,12 @@ def main(cfg):
 
                 real_original_str = file_to_string(real_eval_original_filepath)
                 realworld_original_feedbacks.append(f'Human engineered reward function evaluation in reality for iteration {iter} response {idx}:\n {real_original_str}')
-
-                contents[idx] += real_feedback.format(sim_time=cfg.env.tracking_duration)
-                contents[idx] += realworld_feedbacks[i]
-                contents[idx] += realworld_original_feedbacks[i]
+                
+                fb_content = ""
+                fb_content += real_feedback.format(sim_time=cfg.env.tracking_duration)
+                fb_content += realworld_feedbacks[i]
+                fb_content += realworld_original_feedbacks[i]
+                contents[idx] = content.format(policy_feedback=fb_content)
 
         # Select best sample based on both simulation and real-world evaluation
         test_rewards = np.array(deployment_rewards)
