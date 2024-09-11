@@ -606,8 +606,12 @@ class SimEnvRobotTracker:
         left_feet_state = np.array(self.feet_state_left).swapaxes(-1, -2)
         right_feet_state = np.array(self.feet_state_right).swapaxes(-1, -2)
         feet_state = np.array([left_feet_state, right_feet_state]).swapaxes(0, 1)
+        left_feet_height = np.array(self.feet_state_left[2])
+        right_feet_height = np.array(self.feet_state_right[2])  
+        feet_height = np.array([left_feet_height, right_feet_height]).swapaxes(0, 1)
+        last_feet_height = np.concatenate([np.zeros((1, 2)), feet_height[:-1]], axis=0)
 
-        np.savez(export_path, t=t, base_lin_vel=base_lin_vel, base_ang_vel=base_ang_vel, torques=torques, torque_limits = torque_limits, q=q, last_q=last_q, dq=dq, last_dq=last_dq, ddq=ddq, feet_state=feet_state, commands=commands, survival_time=survival_time, survival_idx=survival_idx)
+        np.savez(export_path, t=t, base_lin_vel=base_lin_vel, base_ang_vel=base_ang_vel, torques=torques, torque_limits = torque_limits, q=q, last_q=last_q, dq=dq, last_dq=last_dq, ddq=ddq, feet_state=feet_state, commands=commands, survival_time=survival_time, survival_idx=survival_idx, feet_height=feet_height, last_feet_height=last_feet_height)
 
 
         # np.savez(export_path,

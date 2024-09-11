@@ -476,7 +476,7 @@ def main(cfg):
             deploy_str = file_to_string(deploy_eval_filepath)
             deployment_strs.append(deploy_str)
 
-            if "total_reward" not in deploy_str:
+            if "total_reward" not in deploy_str and "total_survival_time" not in deploy_str:
                 deployment_feedbacks.append(f'Evaluation failed for iteration {iter} response {idx}, no feedback available!')
                 deployment_rewards.append(DUMMY_FAILURE)
                 deployment_survival_times.append(DUMMY_FAILURE)
@@ -561,7 +561,7 @@ def main(cfg):
                     process.wait()
 
                 real_str = file_to_string(real_eval_filepath)
-                if "total_reward" not in real_str:
+                if "total_reward" not in real_str and "total_survival_time" not in real_str:
                     realworld_feedbacks.append(f'Realworld evaluation failed for iteration {iter} response {idx}, no feedback available!')
                     realworld_rewards.append(DUMMY_FAILURE)
                     realworld_survival_times.append(DUMMY_FAILURE)
