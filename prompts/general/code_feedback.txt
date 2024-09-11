@@ -5,4 +5,8 @@ Please carefully analyze the feedbacks and provide a new, improved reward functi
         (b) Re-writing the reward component 
         (c) Discarding the reward component
     (3) If some reward components' magnitude is significantly larger, then you must re-scale its value to a proper range
-    (4) If 
+    (4) You should compare the reward and corresponding simulation and real world feedbacks (same term without `rew_` prefix), and be careful with following situations
+        (a) Sim or real term value are 10 times or more smaller than training: the policy performs poorly in reality, consider adding more related reward functions to judge the full behavior, or re-scale the value of reward temperature
+        (b) Sim or real term value are 10 times or more greater than training: this policy is strong enough, consider re-scaling the value of reward parameter
+        (c) Sim or real term has different sign with training: your reward implementation is incorrect or insignificant. Consider re-writing the reward component
+        (d) Sim or real term value are close to 0 or significantly larger than others: the implementation of reward might be poorly related to RL task, consider re-writing the component or discarding the component
