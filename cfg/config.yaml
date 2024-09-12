@@ -31,7 +31,7 @@ sample: 16                  # number samples to generate per iteration
 
 # Environment parameters
 cuda:
-  multi_gpu: True
+  multi_gpu: False
   visible_devices: 0,3   # which GPUs to use
   deterministic: False     # whether to set random seeds for reproducibility
   seed: 0                  # random seed
