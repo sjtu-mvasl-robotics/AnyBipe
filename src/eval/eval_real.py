@@ -671,7 +671,7 @@ class SimEnvRobotTracker:
             # get project path
             cur_file_path = os.path.abspath(__file__)
             cur_dir = os.path.dirname(cur_file_path)
-            run_gazebo = subprocess.Popen([os.path.join(cur_dir, "scripts", "make_and_run.sh")], stdout=out, stderr=out, preexec_fn=os.setsid)
+            run_gazebo = subprocess.Popen([os.path.join(cur_dir, "scripts", "make_and_run_real.sh")], stdout=out, stderr=out, preexec_fn=os.setsid)
             print("Gazebo started. Running with PID: ", run_gazebo.pid)
 
             while not self.exported:

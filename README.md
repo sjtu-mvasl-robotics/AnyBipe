@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[[Website]](https://anybipe.github.io/)
+[[Website]](https://sjtu-mvasl-robotics.github.io/anybipe/)
 [[Paper]](URL)
 [[Videos]](URL)
 
