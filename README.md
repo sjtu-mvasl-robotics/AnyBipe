@@ -6,7 +6,7 @@
 [[Paper]](URL)
 [[Videos]](URL)
 
-Yifei Yao<sup>1</sup>, Jiaheng Du<sup>1,†</sup>, Chenyu Gu<sup>1,†</sup>, Wentao He<sup>2,†</sup>, Zhen Zhu<sup>1</sup>, and Junguo Lu<sup>1</sup>
+Yifei Yao<sup>1</sup>, Jiaheng Du<sup>1,†</sup>, Chenyu Gu<sup>1,†</sup>, Wentao He<sup>2,†</sup>, Fuwei Tan<sup>1</sup>, Zhen Zhu<sup>1</sup>, and Junguo Lu<sup>1</sup>
 
 <sup>1</sup> All authors are with Machine Vision and Autonomous System Laboratory, Department of Automation, School of Electronic Information and Electrical Engineering, Shanghai Jiao Tong University, Shanghai, China.
 
@@ -56,10 +56,10 @@ Since our environment requires `ROS` platform, we recommend using `Ubuntu 20.04`
 
 You can install ROS Noetic by following the instructions [here](http://wiki.ros.org/noetic/Installation/Ubuntu). We recommend installing the `Desktop-Full` version. Or you can use the following command to create a docker container with ROS Noetic:
 
-```bash
+<!-- ```bash
 xhost +
 docker run --gpus all -it --device=/dev/dri  --group-add video --volume=/tmp/.X11-unix:/tmp/.X11-unix  --env="DISPLAY=$DISPLAY" --env="QT_X11_NO_MITSHM=1" --env="NVIDIA_DRIVER_CAPABILITIES=all" --network=host --rm --name ros-noetic -v $(pwd):/workspace -w /workspace  osrf/ros:noetic-desktop-full
-```
+``` -->
 
 Create from our docker file is also supported, you can run the following command to build the docker image:
 
@@ -67,7 +67,7 @@ Create from our docker file is also supported, you can run the following command
 cd docker
 docker build -t anybipe_img .
 xhost +
-docker run --gpus all -it --rm --network=host --name anybipe anybipe_img
+docker run --gpus all -it --device=/dev/dri  --group-add video --volume=/tmp/.X11-unix:/tmp/.X11-unix  --env="DISPLAY=$DISPLAY" --env="QT_X11_NO_MITSHM=1" --env="NVIDIA_DRIVER_CAPABILITIES=all" --network=host --rm --name anybipe anybipe_img
 ```
 
 ### Step 2: Create a Conda Environment (Optional)

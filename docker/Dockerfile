@@ -7,31 +7,26 @@ WORKDIR /workspace
 # Copy the current directory contents into the container's workspace
 COPY . /workspace
 
-# Set environment variables
-ENV DISPLAY=$DISPLAY \
-    QT_X11_NO_MITSHM=1 \
-    NVIDIA_DRIVER_CAPABILITIES=all
-
-# Make sure the container is run with the correct group and device permissions
-RUN apt-get update && apt-get install -y \
-    sudo \
-    && sudo groupadd video \
-    && sudo usermod -aG video $USER \
-    && sudo chown -R $USER:$USER /dev/dri
-
 # Ensure the X11 socket is available for GUI applications
 VOLUME ["/tmp/.X11-unix"]
 
 # ROS noetic installation
-# Add the ROS Noetic repository
-RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
 
-# Add the ROS key
-RUN curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | apt-key add -
+# Add keys for ROS Noetic
+
+RUN tee /usr/share/keyrings/ros.gpg > /dev/null
+
+# Install necessary tools
+RUN apt-get update && apt-get install -y curl gnupg2 sudo
+
+RUN sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu focal main" > /etc/apt/sources.list.d/ros-latest.list'
+
+RUN sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
 
 # Install ROS Noetic
-RUN apt-get update && apt-get install -y \
-    ros-noetic-desktop-full
+RUN apt-get update
+
+RUN apt-get install -y ros-noetic-desktop-full
 
 # Initialize rosdep
 RUN rosdep init && rosdep update
