@@ -429,7 +429,6 @@ class SimEnvRobotTracker:
         plt.savefig(self.export_path + "imu_acc.png")
         
 
-
     def plot_angular_velocity(self):
         # plot gt and imu angular velocity
         fig, ax = plt.subplots(3, 1, figsize=(12, 12))
@@ -756,11 +755,11 @@ if __name__ == "__main__":
 
     # argparser
     parser = argparse.ArgumentParser()
-    parser.add_argument("--project_path", type=str, default="/home/yyf/limx_ws")
-    parser.add_argument("--ip_addr", type=str, default="127.0.0.1")
+    parser.add_argument("--project_path", type=str, default="")
+    parser.add_argument("--ip_addr", type=str, default="10.192.1.2")
     parser.add_argument("--export_path", type=str, default="exported_data/")
     parser.add_argument("--export_plot", type=bool, default=True)
-    parser.add_argument("--tracking_duration", type=int, default=20)
+    parser.add_argument("--tracking_duration", type=int, default=30)
 
     args = parser.parse_args()
 
