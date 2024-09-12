@@ -56,12 +56,12 @@ Since our environment requires `ROS` platform, we recommend using `Ubuntu 20.04`
 
 You can install ROS Noetic by following the instructions [here](http://wiki.ros.org/noetic/Installation/Ubuntu). We recommend installing the `Desktop-Full` version. Or you can use the following command to create a docker container with ROS Noetic:
 
-<!-- ```bash
+```bash
 xhost +
 docker run --gpus all -it --device=/dev/dri  --group-add video --volume=/tmp/.X11-unix:/tmp/.X11-unix  --env="DISPLAY=$DISPLAY" --env="QT_X11_NO_MITSHM=1" --env="NVIDIA_DRIVER_CAPABILITIES=all" --network=host --rm --name ros-noetic -v $(pwd):/workspace -w /workspace  osrf/ros:noetic-desktop-full
-``` -->
+```
 
-Create from our docker file is also supported, you can run the following command to build the docker image:
+To build with CUDA support, you can run the following command to build the docker image:
 
 ```bash
 cd docker
