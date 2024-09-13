@@ -15,8 +15,8 @@ COPY ../ /workspace
 # Ensure the X11 socket is available for GUI applications
 VOLUME ["/tmp/.X11-unix"]
 
-# Register mirrors for apt-get
-RUN sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list
+# Register mirrors for apt-get (uncomment if needed)
+# RUN sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list
 
 # Add keys for ROS Noetic
 
