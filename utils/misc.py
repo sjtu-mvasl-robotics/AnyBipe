@@ -205,10 +205,16 @@ def model_deployment_test(model_path, env_name, gym_path, deploy_path, script_pa
         return None
     
     # copy the original policy file to backup
-    os.system(f"cp {deploy_path}/policy.onnx {deploy_path}/policy_original.onnx")
+    try:
+        os.system(f"cp {deploy_path}/policy.onnx {deploy_path}/policy_original.onnx")
+    except:
+        pass
 
     # copy the onnx file to the deployment path
-    os.system(f"cp {export_dir} {deploy_path}/policy.onnx")
+    try:
+        os.system(f"cp {export_dir} {deploy_path}/policy.onnx")
+    except:
+        return None
 
     # run the monitoring script
 
