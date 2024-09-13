@@ -37,7 +37,9 @@ def main(cfg):
 
         logging.info(f"Using multi-GPU for training: {gpu_indices}")
         logging.info(f"Using CUDA devices: {gpu_indices}")
-        os.environ["CUDA_VISIBLE_DEVICES"] = gpu_indices
+        # os.environ["CUDA_VISIBLE_DEVICES"] = gpu_indices
+        os.environ["TOTAL_CUDA_VISIBLE_DEVICES"] = gpu_indices
+        set_freest_gpu()
         print("CUDA_VISIBLE_DEVICES:", os.environ["CUDA_VISIBLE_DEVICES"])
     else:
         gpu_indices = [0]
@@ -171,6 +173,7 @@ def main(cfg):
     # Extract ground truth reward
     if cfg.gt.use_gt:
         if not cfg.gt.set_gt:
+            set_freest_gpu()
             logging.info("Ground-truth reward not set, training ground-truth reward model...")
             rl_filepath = f"env_gt_response.txt"
             with open(rl_filepath, 'w') as f:
@@ -290,6 +293,7 @@ def main(cfg):
             shutil.copy(reward_dest, f"env_{env_name}_iter{iter}_response{response_id}.py")
 
             # execute training script
+            set_freest_gpu()
             rl_filepath = f"env_{env_name}_iter{iter}_response{response_id}.txt"
             with open(rl_filepath, 'w') as f:
                 command = f"python3 -u {workspace_dir}/{cfg.env.train_script} --task={env_name} --reward=anybipe --max_iterations={cfg.env.train_iterations} --headless"
@@ -384,7 +388,7 @@ def main(cfg):
                         if "rew_success" not in run_log:
                             content += f"ground-truth score: {metric_cur}, Max: {metric_cur_max:.2f}, Mean: {metric_cur_mean:.2f}, Min: {metric_cur_min:.2f} \n"             
                 code_feedbacks.append(code_feedback)
-                content += "{policy_feedback}\n"
+                content += "POLICY FEEDBACK\n"
                 content += code_feedback
 
             else:
@@ -595,7 +599,10 @@ def main(cfg):
                 fb_content += real_feedback.format(sim_time=cfg.env.tracking_duration)
                 fb_content += realworld_feedbacks[i]
                 fb_content += realworld_original_feedbacks[i]
-                contents[idx] = content.format(policy_feedback=fb_content)
+                if "POLICY FEEDBACK" in contents[idx]:
+                    contents[idx] = contents[idx].replace("POLICY FEEDBACK", fb_content)
+                else:
+                    contents[idx] += fb_content
 
         # Select best sample based on both simulation and real-world evaluation
         test_rewards = np.array(deployment_rewards)

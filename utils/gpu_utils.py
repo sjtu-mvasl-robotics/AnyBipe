@@ -5,11 +5,11 @@ import os
 def get_freest_gpu():
     # Run nvidia-smi command and get the output
     # get gpu indices from CUDA_VISIBLE_DEVICES
-    cuda_visible_devices = os.environ.get('CUDA_VISIBLE_DEVICES')
+    cuda_visible_devices = os.environ.get('TOTAL_CUDA_VISIBLE_DEVICES')
     if cuda_visible_devices is None:
         gpu_indices = list(range(torch.cuda.device_count()))
     else:
-        print('CUDA_VISIBLE_DEVICES:', cuda_visible_devices)
+        print('TOTAL_CUDA_VISIBLE_DEVICES:', cuda_visible_devices)
         gpu_indices = list(map(int, cuda_visible_devices.split(',')))
 
     result = subprocess.run(['nvidia-smi', '--query-gpu=memory.used,memory.total', '--format=csv,nounits,noheader'], stdout=subprocess.PIPE)
@@ -27,6 +27,8 @@ def get_freest_gpu():
 
 def set_freest_gpu():
     # Set the environment variable to include the specified GPU indices
+    if 'TOTAL_CUDA_VISIBLE_DEVICES' not in os.environ:
+        return None
     freest_gpu, _ = get_freest_gpu()
-    torch.cuda.set_device(freest_gpu)
+    os.environ['CUDA_VISIBLE_DEVICES'] = str(freest_gpu)
     return freest_gpu
