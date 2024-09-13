@@ -8,7 +8,7 @@
 
 Yifei Yao<sup>1</sup>, Jiaheng Du<sup>1,†</sup>, Chenyu Gu<sup>1,†</sup>, Wentao He<sup>2,†</sup>, Fuwei Tan<sup>1</sup>, Zhen Zhu<sup>1</sup>, and Junguo Lu<sup>1</sup>
 
-<sup>1</sup> All authors are with Machine Vision and Autonomous System Laboratory, Department of Automation, School of Electronic Information and Electrical Engineering, Shanghai Jiao Tong University, Shanghai, China.
+<sup>1</sup> All authors are with Machine Vision and Autonomous System Laboratory, Department of Automation, School of Electrical Information and Electronic Engineering, Shanghai Jiao Tong University, Shanghai, China,  with the Key Laboratory f System Control and Information Processing, Ministry of Education of China, and with Shanghai Engineering Research Center of Intelligent Control and Management, Shanghai 200240, China.
 
 <sup>2</sup> Wentao He is is with University of Michigan - Shanghai Jiao Tong University Joint Institute , Shanghai Jiao Tong University, Shanghai, China 
 
