@@ -212,10 +212,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 If you find this work useful, please consider citing our paper:
 
 ```bibtex
-@article{anybipe,
-  title={AnyBipe: An End-to-End Framework for Training and Deploying Bipedal Robots Guided by Language Models},
-  author={Authors},
-  journal={Journal},
-  year={2024}
+@misc{yao2024anybipeendtoendframeworktraining,
+      title={AnyBipe: An End-to-End Framework for Training and Deploying Bipedal Robots Guided by Large Language Models}, 
+      author={Yifei Yao and Wentao He and Chenyu Gu and Jiaheng Du and Fuwei Tan and Zhen Zhu and Junguo Lu},
+      year={2024},
+      eprint={2409.08904},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO},
+      url={https://arxiv.org/abs/2409.08904}, 
 }
 ```
