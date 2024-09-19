@@ -3,7 +3,7 @@
 <div align="center">
 
 [[Website]](https://sjtu-mvasl-robotics.github.io/anybipe/)
-[[Paper]](https://arxiv.org/abs/2409.08904)
+[[Paper]](https://arxiv.org/pdf/2409.08904)
 [[Videos]](resources/demo.mp4)
 
 Yifei Yao<sup>1</sup>, Wentao He<sup>2,†</sup>, Chenyu Gu<sup>1,†</sup>, Jiaheng Du<sup>1,†</sup>, Fuwei Tan<sup>1</sup>, Zhen Zhu<sup>1</sup>, and Junguo Lu<sup>1</sup>
