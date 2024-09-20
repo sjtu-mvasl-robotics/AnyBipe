@@ -33,10 +33,7 @@ Training and deploying reinforcement learning (RL) policies for robots, especial
 
 <summary>Video Demo</summary>
 
-<video>
-    <source src="resources/demo.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-</video>
+![demo(gif)](resources/demo.gif)
 
 </details>
 
