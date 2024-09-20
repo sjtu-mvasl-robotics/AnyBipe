@@ -38,6 +38,10 @@ Training and deploying reinforcement learning (RL) policies for robots, especial
 </details>
 
 ## Important Notice
+
+> Temporary Notice: One of the maintainers of this repository is currently in hospital, some features might be delayed after 27/09/2024. We apologize for any inconvenience caused.
+
+
 This project is the prime version for a more completed framework. Our general framework is almost ready, but we are still working on coding migration (from `Issacgym` to `Issac Sim`), documentation, further experiments (for other robots and platforms), and more. This repository might be merged to the main framework repository in the future.
 
 This repository is still under maintenance, it might be updated frequently. If you want to use this repository for your own robot, please checkout to stable release branches.
